@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import {Link} from 'react-router-dom'
+import { ShoopContext } from '../context/shopContext';
 
 function ProductItem({ id, image, name, price }) {
 
@@ -12,7 +13,8 @@ function ProductItem({ id, image, name, price }) {
                 <img className='hover:scale-110 transition ease-in-out' src={image[0]} alt="product Image" />
             </div>
             <p className='pt-3 pb-1 text-sm'>{name}</p>
-            <p className='text-sm font-medium'>{currency}</p>
+            <p className='text-sm font-medium'>{currency}{price}</p>
+           
         </Link>
     )
 }
