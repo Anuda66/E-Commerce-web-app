@@ -7,7 +7,7 @@ function LatestCollection() {
     
 
     const { products } = useContext(ShoopContext);
-    console.log(products);
+    //console.log(products);
     const [latestProduct, setLatestProduct] = useState([]);
 
     useEffect(()=>{
