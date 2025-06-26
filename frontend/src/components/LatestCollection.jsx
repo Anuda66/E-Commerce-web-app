@@ -5,7 +5,6 @@ import ProductItem from './ProductItem';
 
 function LatestCollection() {
     
-
     const { products } = useContext(ShoopContext);
     //console.log(products);
     const [latestProduct, setLatestProduct] = useState([]);
@@ -22,14 +21,13 @@ function LatestCollection() {
             </div>
 
             {/* Rendering product-------------------------------------------------------- */}
-            <div  className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
+            <div  className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
                 {
                     latestProduct.map((item, index)=>(
                         <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price} />
                     ))
                 }
             </div>
-
         </div>
     )
 }
