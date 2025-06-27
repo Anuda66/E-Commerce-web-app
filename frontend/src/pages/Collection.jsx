@@ -10,10 +10,39 @@ function Collection() {
   const { products } = useContext(ShoopContext)
   const [showFilter, setShowFilter] = useState(false)
   const [filterProducts, setFilterProducts] = useState([])
+  const [category, setCategory] = useState([])
+  const [subCategory, setSubCategory] = useState([])
 
-  useEffect(()=>{
+  const toggelCategory = (e) => {
+    if (category.includes(e.target.value)) {
+      setCategory(prev => prev.filter(item => item !== e.target.value))
+    }
+    else {
+      setCategory(prev => [...prev, e.target.value])
+    }
+  }
+
+  const toggeleSubCategory = (e) => {
+    if (subCategory.includes(e.target.value)) {
+      setCategory(prev => prev.filter(item => item !== e.target.value))
+    }
+    else {
+      setSubCategory(prev => [...prev, e.target.value])
+    }
+  }
+
+  useEffect(() => {
     setFilterProducts(products)
-  },[])
+  }, [])
+
+  // useEffect(() => {
+  //   console.log(category);
+
+  // }, [category])
+
+  // useEffect(() => {
+  //   console.log(subCategory);
+  // }, [subCategory])
 
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
@@ -29,13 +58,13 @@ function Collection() {
           <p className='mb-3 text-sm font-medium '>CATEGORIES</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type='checkbox' value={'Men'} />Men
+              <input className='w-3' type='checkbox' value={'Men'} onChange={toggelCategory} />Men
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type='checkbox' value={'Women'} />Women
+              <input className='w-3' type='checkbox' value={'Women'} onChange={toggelCategory} />Women
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type='checkbox' value={'kids'} />kids
+              <input className='w-3' type='checkbox' value={'kids'} onChange={toggelCategory} />kids
             </p>
           </div>
         </div>
@@ -45,13 +74,13 @@ function Collection() {
           <p className='mb-3 text-sm font-medium '>CATEGORIES</p>
           <div className='flex flex-col gap-2 text-sm font-light text-gray-700'>
             <p className='flex gap-2'>
-              <input className='w-3' type='checkbox' value={'Topwear'} />Topwear
+              <input className='w-3' type='checkbox' value={'Topwear'} onChange={toggeleSubCategory}/>Topwear
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type='checkbox' value={'Bottomwear'} />Bottomwear
+              <input className='w-3' type='checkbox' value={'Bottomwear'} onChange={toggeleSubCategory}/>Bottomwear
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type='checkbox' value={'Winterwear'} />Winterwear
+              <input className='w-3' type='checkbox' value={'Winterwear'} onChange={toggeleSubCategory}/>Winterwear
             </p>
           </div>
         </div>
@@ -69,14 +98,14 @@ function Collection() {
           </select>
         </div>
 
-          {/* Map product*/}
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
-            {
-              filterProducts.map((item, index)=>(
-                <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price}/>
-              ))
-            }
-          </div>
+        {/* Map product*/}
+        <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 gap-y-6'>
+          {
+            filterProducts.map((item, index) => (
+              <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price} />
+            ))
+          }
+        </div>
       </div>
 
 
