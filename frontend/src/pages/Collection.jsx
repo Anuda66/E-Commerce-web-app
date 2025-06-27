@@ -31,6 +31,15 @@ function Collection() {
     }
   }
 
+  const applyFilter = () => {
+    let productCopy = products.slice()
+
+    if (category.length > 0) {
+      productCopy = productCopy.filter(item => category.includes(item.category))
+    }
+    setFilterProducts(productCopy)
+  }
+
   useEffect(() => {
     setFilterProducts(products)
   }, [])
