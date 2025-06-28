@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { use, useContext, useState } from 'react'
 import { ShoopContext } from '../context/shopContext'
 import { assets } from '../assets/assets'
 import Title from '../components/Title'
@@ -41,17 +41,21 @@ function Collection() {
   }
 
   useEffect(() => {
+    applyFilter()
+  },[category, subCategory])
+
+  useEffect(() => {
     setFilterProducts(products)
-  }, [])
+  },[])
 
-  // useEffect(() => {
-  //   console.log(category);
+  useEffect(() => {
+     console.log(category);
 
-  // }, [category])
+   }, [category])
 
-  // useEffect(() => {
-  //   console.log(subCategory);
-  // }, [subCategory])
+   useEffect(() => {
+     console.log(subCategory);
+   }, [subCategory])
 
   return (
     <div className='flex flex-col sm:flex-row gap-1 sm:gap-10 pt-10 border-t'>
@@ -73,7 +77,7 @@ function Collection() {
               <input className='w-3' type='checkbox' value={'Women'} onChange={toggelCategory} />Women
             </p>
             <p className='flex gap-2'>
-              <input className='w-3' type='checkbox' value={'kids'} onChange={toggelCategory} />kids
+              <input className='w-3' type='checkbox' value={'Kids'} onChange={toggelCategory} />kids
             </p>
           </div>
         </div>
