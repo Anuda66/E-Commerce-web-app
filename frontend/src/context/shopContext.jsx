@@ -1,6 +1,6 @@
 //commen varibles and state variable
 
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { products} from '../assets/assets';
 
 export const ShoopContext = createContext();
@@ -8,10 +8,12 @@ export const ShoopContext = createContext();
 const ShopContextProvider = (props) => {
 
     const currency = "$";
-    const deliveryFee = 10;
+    const delivery_fee = 10;
+    const [search, setSearch] = useState("");
+    const [showSearch, setShowSearch] = useState(false);
 
     const value = {
-        products, currency, deliveryFee 
+        products, currency, delivery_fee, search, setSearch, showSearch, setShowSearch
     }
 
     return (
