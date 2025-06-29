@@ -24,7 +24,7 @@ function SerchBar() {
                 <input value={search} onChange={(e) => setSearch(e.target.value)} className='flex-1 outline-none bg-inherit text-sm ' type="text" placeholder='Search' />
                 <img className='w-4' src={assets.search_icon} alt="serch Icon" />
             </div>
-            <img onClick={()=>setShowSearch(false)} className='inline w-3 cursor-pointer ' src={assets.cross_icon} alt="Cross_icon" />
+            <img onClick={()=>setShowSearch(false)} className='inline w-3 cursor-pointer' src={assets.cross_icon} alt="Cross_icon" />
         </div>
     ) : null
 }
