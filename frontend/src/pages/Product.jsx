@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ShoopContext } from '../context/shopContext'
 import { assets } from '../assets/assets'
+import RelatedProduct from '../components/RelatedProduct'
 
 const Product = () => {
 
@@ -27,11 +28,12 @@ const Product = () => {
     fetchProductData()
   }, [productId, products])
 
-
   return productData ? (
     <div className='board-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100'>
+      
       {/* peoduct data----------------------------------------------------------- */}
       <div className='flex gap-12 sm:gap-12 flex-col sm:flex-row '>
+
         {/* peoduct data---------------------------------------------------------- */}
         <div className='flex-1 flex flex-col-reverse gap-3 sm:flex-row'>
           <div className='flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full'>
@@ -45,6 +47,7 @@ const Product = () => {
             <img className='w-full h-auto' src={image} alt="" />
           </div>
         </div>
+
         {/* peoduct Infor---------------------------------------------------------- */}
         <div className='flex-1'>
           <h1 className='font-medium text-2xl mt-2'>{productData.name}</h1>
@@ -75,6 +78,7 @@ const Product = () => {
           </div>
         </div>
       </div>
+
       {/* Description and review---------------------------------------------------------- */}
       <div className='mt-20'>
         <div className='flex'>
@@ -91,7 +95,8 @@ const Product = () => {
         </div>
 
         {/* Realated products---------------------------------------------------------- */}
-        
+        <RelatedProduct/>
+
       </div>
 
     </div>
