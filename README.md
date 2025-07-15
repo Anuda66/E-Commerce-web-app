@@ -2,6 +2,8 @@
 
 This is a fully functional e-commerce web application built using **React**, **Node.js**, **Express**, and **MongoDB**. The platform allows users to browse products, add them to the cart, place orders, and manage their profiles. Admin users can manage products, categories, and orders.
 
+![image alt](https://github.com/Anuda66/E-Commerce-web-app/blob/a7aa7a51ade69b1bc3a7c82706c48dab782a5a59/Screenshot%202025-07-16%20005553.png)
+
 ## 🚀 Features
 
 ### 👥 User
