@@ -3,8 +3,6 @@
 This is a fully functional e-commerce web application built using **React**, **Node.js**, **Express**, and **MongoDB**. The platform allows users to browse products, add them to the cart, place orders, and manage their profiles. Admin users can manage products, categories, and orders.
 
 ![image alt](https://github.com/Anuda66/E-Commerce-web-app/blob/a7aa7a51ade69b1bc3a7c82706c48dab782a5a59/Screenshot%202025-07-16%20005553.png)
-![image alt](https://github.com/Anuda66/E-Commerce-web-app/blob/740d2fd59289a8822b2b021af668d76de7e3efb3/Screenshot%202025-07-16%20005608.png)
-
 
 ## 🚀 Features
 
@@ -98,5 +96,11 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## 📞 Contact
 For any questions or suggestions, please contact the project maintainer:
 - Anuda - [GitHub Profile](https://github.com/Anuda66)
-- Email: anudaransara@gmail.com 
+- Email: anudaransara@gmail.com
+
+## 🎥 Demo
+![image alt](https://github.com/Anuda66/E-Commerce-web-app/blob/a7aa7a51ade69b1bc3a7c82706c48dab782a5a59/Screenshot%202025-07-16%20005553.png)
+![image alt](https://github.com/Anuda66/E-Commerce-web-app/blob/740d2fd59289a8822b2b021af668d76de7e3efb3/Screenshot%202025-07-16%20005608.png)
+![image alt](https://github.com/Anuda66/E-Commerce-web-app/blob/25d4111bc79cc8298b1306c88e4def9fe7104c13/Screenshot%202025-07-16%20005630.png)
+
    
