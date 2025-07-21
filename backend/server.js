@@ -14,11 +14,11 @@ connectCloudinary()
 
 // Middelware----------------------------------------------------------- 
 app.use(express.json())
-app.use(cors()) // we can access the backend fron any IP 
+app.use(cors()) // we can access the backend from any IP 
 
 // API end point--------------------------------------------------------
 app.use('/api/user', userRouter)
-app.use('/product', productRouter)
+app.use('/api/product', productRouter)
 
 
 app.get('/', (req, res) =>{
