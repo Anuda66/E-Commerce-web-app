@@ -1,16 +1,10 @@
 import { v2 as cloudinary } from 'cloudinary'
-
-
-cloudinary.config({
-        cloude_name: process.env.COLUDINARY_NAME,
-        api_key: process.env.COLUDINARY_API_KEY,
-        api_secret_key: process.env.COLUDINARY_SECRET_KEY
-    })
+import productModel from '../models/productModel.js'
 
 //API for add product------------------------------
 const addProduct = async (req, res) => {
     try {
-        const { name, description, price, category, subCategory, size, bestseller } = req.body
+        const { name, description, price, category, subCategory, sizes, bestseller } = req.body
 
         const image1 = req.files.image1 && req.files.image1[0]
         const image2 = req.files.image2 && req.files.image2[0]
@@ -26,10 +20,25 @@ const addProduct = async (req, res) => {
             })
         )
 
-        console.log(name, description, price, category, subCategory, size, bestseller)
-        console.log(imagesUrl);
+        // console.log(name, description, price, category, subCategory, size, bestseller)
+        // console.log(imagesUrl);
 
-        res.json({})
+        const productData = {
+            name,
+            description,
+            price: Number(price),       
+            category,
+            subCategory,
+            sizes: JSON.parse(sizes),  // Assuming size is a JSON string
+            bestseller: bestseller === 'true'? true : false, // Convert to boolean
+            images: imagesUrl,
+            date: Date.now()
+        }
+        console.log(productData);
+        const product = new productModel(productData)
+        await product.save()
+
+        res.json({ success: true, message: "Product Added" })
 
     }
     catch (error) {
