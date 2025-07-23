@@ -26,15 +26,15 @@ const addProduct = async (req, res) => {
         const productData = {
             name,
             description,
-            price: Number(price),       
+            price: Number(price),
             category,
             subCategory,
             sizes: JSON.parse(sizes),  // Assuming size is a JSON string
-            bestseller: bestseller === 'true'? true : false, // Convert to boolean
+            bestseller: bestseller === 'true' ? true : false, // Convert to boolean
             images: imagesUrl,
             date: Date.now()
         }
-        console.log(productData);
+        // console.log(productData);
         const product = new productModel(productData)
         await product.save()
 
@@ -50,10 +50,12 @@ const addProduct = async (req, res) => {
 //API fro list product-----------------------------
 const listProduct = async (req, res) => {
     try {
-
+        const product = await productModel.find({ })
+        res.json({ success: true, product })
     }
     catch (error) {
-
+        console.log(error);
+        res.json({ success: false, message: error.message })
     }
 }
 
