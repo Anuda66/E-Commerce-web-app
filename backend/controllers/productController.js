@@ -50,7 +50,7 @@ const addProduct = async (req, res) => {
 //API fro list product-----------------------------
 const listProduct = async (req, res) => {
     try {
-        const product = await productModel.find({ })
+        const product = await productModel.find({})
         res.json({ success: true, product })
     }
     catch (error) {
@@ -62,10 +62,13 @@ const listProduct = async (req, res) => {
 //API fro remove product--------------------------
 const removeProduct = async (req, res) => {
     try {
+        await productModel.findByIdAndDelete(req.body.id)
+        res.json({ success: true, message: "Product Removed" })
 
     }
     catch (error) {
-
+        console.log(error);
+        res.json({ success: false, message: error.message })
     }
 }
 
@@ -75,7 +78,8 @@ const singleProduct = async (req, res) => {
 
     }
     catch (error) {
-
+        console.log(error);
+        res.json({ success: false, message: error.message })
     }
 }
 
