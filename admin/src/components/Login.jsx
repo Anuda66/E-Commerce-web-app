@@ -3,25 +3,25 @@ import axios from 'axios';
 import { backendUrl } from '../App';
 import { toast } from 'react-toastify';
 
-function Login({setToken}) {
+function Login({ setToken }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const onSubmitHandeler = async (e) => {
-        try{
+        try {
             e.preventDefault()
             //console.log(email, password);
-            const response = await axios.post(backendUrl + '/api/user/admin', {email, password})
+            const response = await axios.post(backendUrl + '/api/user/admin', { email, password })
             //console.log(response);
-            if (response.data.success){
-                setToken(response.data.setToken)
+            if (response.data.success) {
+                setToken(response.data.token)
             }
-            else{
+            else {
                 toast.error(response.data.message)
             }
         }
-        catch(error){
+        catch (error) {
             console.log(error);
             toast.error(error.message)
         }
@@ -34,11 +34,11 @@ function Login({setToken}) {
                 <form onSubmit={onSubmitHandeler} >
                     <div className='mb-3 min-w-72 '>
                         <p className='text-sm font-medium text-gray-700 mb-2 ' >Email Address</p>
-                        <input onChange={(e)=>setEmail(e.target.value)} value={email} className='rounded-md w-full px-3 py-2 border border-gray-300 outline-none ' type="email" placeholder='your@email.com' required />
+                        <input onChange={(e) => setEmail(e.target.value)} value={email} className='rounded-md w-full px-3 py-2 border border-gray-300 outline-none ' type="email" placeholder='your@email.com' required />
                     </div>
                     <div className='mb-3 min-w-72 '>
                         <p className='text-sm font-medium text-gray-700 mb-2 ' >Password</p>
-                        <input onChange={(e)=>setPassword(e.target.value)} value={password} className='rounded-md w-full px-3 py-2 border border-gray-300 outline-none ' type="password" placeholder='pasword' required />
+                        <input onChange={(e) => setPassword(e.target.value)} value={password} className='rounded-md w-full px-3 py-2 border border-gray-300 outline-none ' type="password" placeholder='pasword' required />
                     </div>
                     <button className='mt-2 w-full py-2 px-4 rounded-md text-white bg-black active:bg-gray-700 cursor-pointer' type='submit'>Login</button>
                 </form>
