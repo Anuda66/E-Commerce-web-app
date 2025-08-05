@@ -4,7 +4,7 @@ import { backendUrl } from '../App'
 import { toast } from 'react-toastify'
 import { curency } from '../App'
 
-function list() {
+function list({token}) {
 
   const [list, setList] = useState([])
 
@@ -26,14 +26,32 @@ function list() {
     }
   }
 
+  const removeProduct = async (id) => {
+    try {
+      const response = await axios.post(backendUrl + '/api/product/remove', {id} , {headers:{token}})
+
+      if (response.data.success){
+        toast.success(response.data.message)
+        await fetchList()
+      }
+      else{
+        toast.error(error.data.message)
+      }
+    }
+    catch (error) {
+      console.log(error)
+      toast.error(error.message)
+    }
+  }
+
   useEffect(() => {
     fetchList()
   }, [])
 
-
+  
   return (
     <>
-      <p className='mb-2'>App Product List</p>
+      <p className=' mb-5 text-2xl'>App Product List</p>
       <div className='flex flex-col gap-2'>
         {/* List table title -------------------------------------- */}
         <div className='hidden md:grid grid-cols-[1fr_3fr_1fr_1fr_1fr] items-center py-1 px-2 boarder bg-gray-100 text-sm '>
@@ -51,7 +69,7 @@ function list() {
               <p>{item.name} </p>
               <p>{item.category } </p>
               <p  >{curency}{item.price} </p> 
-              <p className='text-right md:text-center cursor-pointer text-lg ' >X</p>
+              <p onClick={()=>removeProduct(item._id)} className='text-right md:text-center cursor-pointer text-lg ' >X</p>
             </div>
           ))
         }

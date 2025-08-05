@@ -64,7 +64,7 @@ function add({ token }) {
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col w-full items-start gap-3'>
       <div >
-        <p className='mb-5 text-2xl'>Add product</p>
+        <p className='mb-5 text-2xl'>Add Product</p>
         <p className='mb-2'>Upload Image</p>
 
         <div className='flex gap-2 '>

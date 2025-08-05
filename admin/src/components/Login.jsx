@@ -41,6 +41,8 @@ function Login({ setToken }) {
                         <input onChange={(e) => setPassword(e.target.value)} value={password} className='rounded-md w-full px-3 py-2 border border-gray-300 outline-none ' type="password" placeholder='pasword' required />
                     </div>
                     <button className='mt-2 w-full py-2 px-4 rounded-md text-white bg-black active:bg-gray-700 cursor-pointer' type='submit'>Login</button>
+                    <p>admin@gmail.com</p>
+                    <p>admin123</p>
                 </form>
             </div>
         </div>
