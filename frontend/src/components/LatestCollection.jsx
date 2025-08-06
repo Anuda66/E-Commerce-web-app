@@ -11,7 +11,7 @@ function LatestCollection() {
 
     useEffect(()=>{
         setLatestProduct(products.slice(0,10));
-    },[])
+    },[products])
 
     return (
         <div className='my-10'>
@@ -24,7 +24,7 @@ function LatestCollection() {
             <div  className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6'>
                 {
                     latestProduct.map((item, index)=>(
-                        <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price} />
+                        <ProductItem key={index} id={item._id} images={item.images} name={item.name} price={item.price} />
                     ))
                 }
             </div>
