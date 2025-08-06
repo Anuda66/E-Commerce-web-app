@@ -1,9 +1,8 @@
 //commen varibles and state variable
-
 import { createContext, useEffect, useState } from "react";
-import { products} from '../assets/assets';
 import { toast } from "react-toastify";
-import {useNavigate} from 'react-router-dom'
+import { useFetcher, useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export const ShoopContext = createContext();
 
@@ -11,31 +10,33 @@ const ShopContextProvider = (props) => {
 
     const currency = "$";
     const delivery_fee = 10;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);
     const [cartItem, setCartItem] = useState({})
+    const [products, setProducts] = useState([])
 
     const navigate = useNavigate()
 
-    
+
     const addToCart = async (itemId, size) => {
 
-        if(!size) {
+        if (!size) {
             toast.error('Select Product Size');
             return;
         }
 
         let cartData = structuredClone(cartItem)
 
-        if (cartData[itemId]){
+        if (cartData[itemId]) {
             if (cartData[itemId][size]) {
                 cartData[itemId][size] += 1
             }
-            else{
+            else {
                 cartData[itemId][size] = 1
             }
         }
-        else{
+        else {
             cartData[itemId] = {}
             cartData[itemId][size] = 1
         }
@@ -43,15 +44,15 @@ const ShopContextProvider = (props) => {
     }
 
     const getCartCount = () => {
-        let totalCount = 0 ;
-        for (const items in cartItem){
-            for (const item in cartItem[items]){
-                try{
-                    if (cartItem[items][item] > 0){
+        let totalCount = 0;
+        for (const items in cartItem) {
+            for (const item in cartItem[items]) {
+                try {
+                    if (cartItem[items][item] > 0) {
                         totalCount += cartItem[items][item]
                     }
                 }
-                catch (error){
+                catch (error) {
                 }
             }
         }
@@ -60,20 +61,20 @@ const ShopContextProvider = (props) => {
 
     // useEffect(()=>{
     //     console.log(cartItem);
-        
+
     // },[cartItem])
 
     const getCartAmount = () => {
         let totalAmount = 0;
-        for (const items in cartItem){
+        for (const items in cartItem) {
             let itemInfo = products.find((product) => product._id === items)
-            for (const item in cartItem[items] ){
-                try{
+            for (const item in cartItem[items]) {
+                try {
                     if (cartItem[items][item] > 0) {
                         totalAmount += itemInfo.price * cartItem[items][item]
                     }
                 }
-                catch (error){
+                catch (error) {
 
                 }
             }
@@ -88,12 +89,28 @@ const ShopContextProvider = (props) => {
         setCartItem(cartData)
     }
 
+    const getProductData = async () => {
+        try {
+            const response = await axios.get(backendUrl + '/api/product/list' )
+            console.log(response.data);
+            if (response.data.success){
+                setProducts(response.data.product)
+            }
+            
+        } 
+        catch(error) {
 
+        }
+    }
+
+    useEffect(() => {
+        getProductData()
+    },[])
 
 
     const value = {
         products, currency, delivery_fee, search, setSearch, showSearch, setShowSearch, cartItem, addToCart, getCartCount,
-        updateQuantity, getCartAmount, navigate,
+        updateQuantity, getCartAmount, navigate, backendUrl 
     }
 
     return (
