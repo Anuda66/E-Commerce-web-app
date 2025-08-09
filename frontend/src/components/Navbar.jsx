@@ -10,7 +10,14 @@ import { GrLogout } from "react-icons/gr";
 function Navbar() {
 
   const [visible, setVisible] = useState(false)
-  const { setShowSearch, getCartCount, navigate } = useContext(ShoopContext)
+  const { setShowSearch, getCartCount, navigate, token, setToken, setCartItem } = useContext(ShoopContext)
+
+  const logout = () => {
+    localStorage.removeItem('token')
+    setToken('')
+    setCartItem({})
+    navigate('/login')
+  }
 
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
@@ -44,7 +51,7 @@ function Navbar() {
               <p className='cursor-pointer hover:text-black flex items-center gap-1'> <CgProfile /> My Profile</p>
               <p className='cursor-pointer hover:text-black flex items-center gap-1'><FaTools />Order</p>
               <hr />
-              <p className='cursor-pointer hover:text-black flex items-center gap-1'><GrLogout />Logout</p>
+              <p onClick={logout} className='cursor-pointer hover:text-black flex items-center gap-1'><GrLogout />Logout</p>
             </div>
           </div>
         </div>
@@ -68,8 +75,6 @@ function Navbar() {
           <NavLink onClick={() => setVisible(false)} className='py-2 pl-6 border ' to='/contact'>Contact</NavLink>
         </div>
       </div>
-
-
     </div>
   )
 }

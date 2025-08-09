@@ -1,17 +1,16 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ShoopContext } from '../context/shopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 function Login() {
 
-  const [currentState, setCurrentState] = useState('Sing Up')
+  const [currentState, setCurrentState] = useState('Login')
   const { navigate, backendUrl, token, setToken } = useContext(ShoopContext)
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
@@ -35,18 +34,22 @@ function Login() {
           setToken(response.data.token)
           localStorage.setItem('token', response.data.token)
         }
-        else{
+        else {
           toast.error(response.data.message)
         }
-
       }
     }
     catch (error) {
       console.log(error);
       toast.error(error.message)
-
     }
   }
+
+  useEffect(() => {
+    if (token) {
+      navigate('/')
+    }
+  })
 
   return (
     <form onSubmit={onSubmitHandler} className='flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800 '>
@@ -58,7 +61,6 @@ function Login() {
       <input onChange={(event) => setEmail(event.target.value)} value={email} type="email" className='w-full px-3 py-2 border border-gray-800' placeholder='Email' required />
       <input onChange={(event) => setPassword(event.target.value)} value={password} type="password" className='w-full px-3 py-2 border border-gray-800' placeholder='Password' required />
       <div className='w-full flex justify-between text-sm mt-[-8px]'>
-
         {
           currentState === 'Login'
             ? <p onClick={() => setCurrentState('Sing Up')} className='cursor-pointer'>Create an Account</p>
