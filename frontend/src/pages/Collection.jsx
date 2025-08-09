@@ -152,8 +152,6 @@ function Collection() {
           }
         </div>
       </div>
-
-
     </div>
   )
 }
