@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { ShoopContext } from '../context/shopContext';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 function Login() {
 
@@ -29,12 +30,20 @@ function Login() {
       }
       else {
         const response = await axios.post(backendUrl + '/api/user/login', { email, password })
-        console.log(response);
-        
+        //console.log(response);
+        if (response.data.success) {
+          setToken(response.data.token)
+          localStorage.setItem('token', response.data.token)
+        }
+        else{
+          toast.error(response.data.message)
+        }
+
       }
     }
     catch (error) {
       console.log(error);
+      toast.error(error.message)
 
     }
   }
